@@ -1,0 +1,107 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenTK" Version="3.2.0" />
+    <PackageReference Include="OpenTK.GLControl" Version="3.1.0" />
+    <PackageReference Include="Unosquare.Raspberry.IO" Version="0.24.0" />
+    <PackageReference Include="Unosquare.WiringPi" Version="0.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="1602a_LCD">
+      <HintPath>..\1602a_LCD\bin\Release\netcoreapp3.1\linux-arm\1602a_LCD.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.Platform.NetStandard">
+      <HintPath>bin\Debug\netcoreapp3.1\linux-arm\emgu\Emgu.CV.Platform.NetStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="freenectdotnet">
+      <HintPath>..\..\..\Desktop\Raspberry Pi\Sonstiges\libfreenect\wrappers\csharp\bin\freenectdotnet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="concrt140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="cvextern.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Emgu.CV.Platform.NetStandard.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="libcvextern.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="msvcp140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="msvcp140_1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="msvcp140_2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="msvcp140_codecvt_ids.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="opencv_videoio_ffmpeg420.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\vcruntime140.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\opencv_videoio_ffmpeg420.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\msvcp140_codecvt_ids.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\msvcp140_2.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\msvcp140_1.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\msvcp140.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\cvextern.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\lyigi\.nuget\packages\emgu.cv.runtime.windows\4.2.0.3662\build\x86\concrt140.dll" />
+  </ItemGroup>
+
+  <Import Project="bin\Debug\netcoreapp3.1\linux-arm\emgu\Emgu.CV.Runtime.Raspbian.projitems" Label="Shared" />
+
+</Project>
