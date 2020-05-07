@@ -24,6 +24,8 @@ Hier handelt es sich um die neuste Version des Einplatinen-Computers: dem **Rasp
 * Micro-SD Slot
 * 5V DC via USB-C
 
+Die GPIOs sind vielseitig einsetzbar - einige haben bspw. eine Hardware PWM Funktion, andere sind I²C-fähig. Weiter lässt sich der GPIO Header einsetzen zum Verbinden von [verschiedenen HAT Modulen](https://uk.pi-supply.com/products/iot-lora-node-phat-for-raspberry-pi).
+
 ### Das Betriebssystem
 Auf dem Pi 4B läuft die neuste Raspian Buster, welches auf Debian Buster (also Debian 10) basiert. Dieses Betriebssystem liefert ein "Windows-ähnliches"
 Erlebnis im Sinne von Explorer, Desktop, Start-Menü uvm.
