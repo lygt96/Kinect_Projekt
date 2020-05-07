@@ -58,3 +58,24 @@ In diesem Projekt müssen allgemein 3 Vorbereitungen bezüglich des Codes getrof
 Die Details zu dieser Bibliothek können der Repo [lygt96/1602a_LCD](https://github.com/lygt96/1602a_LCD) entnommen werden.
 
 #### Ansteuern des Kinects
+OpenKinect ermöglicht es, auch mit C# an eine Linux Maschine angeschlossene
+Kinect zu steuern. Die benötigten Quelldaten können der Website entnommen
+und unter Windows kompiliert werden, um in Visual Studio eine Referenz zu dieser Bibliothek
+zu erstellen. Der Prozess von der Initialisierung des Kinects bis hin zum
+erhalten eines Bytearrays mit den Bilddaten, ist im Code erklärt. 
+
+#### Computer Vision
+In C# lässt sich Computervision mithilfe von EmguCV realisieren. Diese Bibliothek basiert
+auf der originalen OpenCV Bibiliothek für C++ und funktioniert identisch. Die Bibliothek muss
+unter Linux kompiliert werden, da sie nicht von Visual Studio gemaneged wird. Die jeweiligen Librarys müssen 
+sich daher stets im gleichen Verzeichnis wie die Executable befinden.
+
+### Funktionsweise
+Beim Starten der Applikation werden zunächst alle Komponenten, d.h.
+das LCD Display, die Kinect sowie das CV System EmguCV initialisiert. Im Anschluss
+steht es dem Benutzer frei, einen Test des Servomotors des Kinects durchzuführen.
+Anschließend können für die Farb- sowie für die Tiefenkamera die jeweiligen Modi eingestellt werden.
+
+
+Ist dies geschehen, arbeitet das Programm in einer Endlosschleife und wartet darauf, dass der Thread der extra
+für das Verarbeiten der Daten aus dem Kinect
