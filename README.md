@@ -1,3 +1,7 @@
+Readme-Todo:
+* Bilder einfügen
+* weitere Details
+
 # Erstes POC Projekt - C# mit Raspberry Pi 4
 Dieses Projekt soll zeigen, welche Möglichkeiten sich bieten, eine Computer Vision Applikation auf einem Raspberry Pi auszuführen, welches in C# geschrieben wurde.
 
