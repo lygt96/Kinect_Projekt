@@ -3,7 +3,7 @@ Dieses Projekt soll zeigen, welche Möglichkeiten sich bieten, eine Computer Vis
 
 ## Der Raspberry Pi
 ### Technische Spezifikationen
-Hier handelt es sich um die neuste Version des Einplatinen-Computers: dem **Raspberry Pi 4B**. Die technischen Spezifikationen lauten:
+Hier handelt es sich um die neuste Version des Einplatinen-Computers: dem **Raspberry Pi 4B**. Die wichtigsten technischen Spezifikationen lauten:
 
 * Broadcom BCM2711, Quad core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz
 * 4GB Arbeitsspeicher
@@ -19,8 +19,6 @@ Hier handelt es sich um die neuste Version des Einplatinen-Computers: dem **Rasp
 * OpenGL ES 3.0 Graphics
 * Micro-SD Slot
 * 5V DC via USB-C
-* 5V DC via GPIO
-* Arbeitstemperatur: 0°C - 50°C
 
 ### Das Betriebssystem
 Auf dem Pi 4B läuft die neuste Raspian Buster, welches auf Debian Buster (also Debian 10) basiert. Dieses Betriebssystem liefert ein "Windows-ähnliches"
