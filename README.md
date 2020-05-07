@@ -47,6 +47,8 @@ Repo [lygt96/1602a_LCD](https://github.com/lygt96/1602a_LCD) verwendet, welches 
 ### Die Entwicklungsumgebung
 Als IDE wird Visual Studio 2019 auf einem Windows 10 Rechner verwendet. Kompilieren geschieht ebenfalls auf dem IDE-Rechner. 
 Mittels FTP sowie SSH kann die Applikation auf den Pi übertragen und ausgeführt werden.
+Die in Visual Studio eingebaute Remote-Debug Funktion erleichtert das "entfernte Programmieren" mit dem Pi.
+![](https://i.imgur.com/aJBfqLc.png "Debug")
 
 ### Vorbereitungen und Dependencies
 In diesem Projekt müssen allgemein 3 Vorbereitungen bezüglich des Codes getroffen werden:
@@ -72,10 +74,82 @@ sich daher stets im gleichen Verzeichnis wie die Executable befinden.
 
 ### Funktionsweise
 Beim Starten der Applikation werden zunächst alle Komponenten, d.h.
-das LCD Display, die Kinect sowie das CV System EmguCV initialisiert. Im Anschluss
+das LCD Display und die Kinect initialisiert. Im Anschluss
 steht es dem Benutzer frei, einen Test des Servomotors des Kinects durchzuführen.
 Anschließend können für die Farb- sowie für die Tiefenkamera die jeweiligen Modi eingestellt werden.
 
 
 Ist dies geschehen, arbeitet das Programm in einer Endlosschleife und wartet darauf, dass der Thread der extra
-für das Verarbeiten der Daten aus dem Kinect
+für das Verarbeiten der Daten aus dem Kinect verantwortlich ist, Daten liefert. 
+
+
+```csharp
+
+// In Main: Erstellen eines Threads
+updateThread = new Thread(delegate ()
+{
+    try
+    {
+        kinect.UpdateStatus();
+        Kinect.ProcessEvents();
+    }
+    catch (ThreadInterruptedException e)
+    {
+        return;
+    }
+    catch (Exception ex)
+    {
+
+    }
+});
+updateThread.Start();
+```
+
+```csharp
+// Kinect initialisieren
+public static void Init(Kinect kinect)
+{ 
+    if (Kinect.DeviceCount > 0)
+    {
+        // Kinect Verbinden
+        kinect.Open();
+
+        // Eventhandler
+        kinect.VideoCamera.DataReceived += HandleKinectVideoCameraDataReceived;
+        kinect.DepthCamera.DataReceived += HandleKinectDepthCameraDataReceived;
+
+        // Kameras starten
+        kinect.VideoCamera.Start();
+        kinect.DepthCamera.Start();
+
+        // LED Farbe ändern
+        kinect.LED.Color = LEDColor.Yellow;
+    }
+}
+```
+
+```csharp
+// Handeln der Daten der Videokamera
+private static void HandleKinectVideoCameraDataReceived(object sender, BaseCamera.DataReceivedEventArgs e)
+{
+    // Argument e beinhaltet die Daten
+    Console.WriteLine("Neue RGB-Daten @ {0}", e.Timestamp);
+
+    // Erstelle ein EmguCV Image im RGB Modus mit den Dimensionen von e
+    Image<Rgb, byte> rgbImage = new Image<Rgb, byte>(e.Data.Width, e.Data.Height);
+
+    // Kopiere die Daten aus e in das eben erstellte Image
+    rgbImage.Bytes = e.Data.Data;
+
+    // Speichern
+    rgbImage.Save("rgb_img_" + System.DateTime.Now.ToString().Replace(".", "").Replace(":", "").Replace(" ", "") + ".png");
+}
+```
+
+## Roadmap
+* Bessere Dokumentation
+* Livepreview
+* Direktes Steuern des Servos
+* Streamen auf eine lokal gehostete Website, welches als Dashboard dient
+* Interpretieren der Daten aus der Tiefenkamera
+* Live Anzeige der nächsten und weitesten Stelle im Bild anhand Daten aus der Tiefenkamera
